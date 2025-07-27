@@ -9,7 +9,7 @@ import pic8 from '/src/assets/8.jpg'
 import pic9 from '/src/assets/9.jpg'
 import pic10 from '/src/assets/10.jpg'
 import pic11 from '/src/assets/11.jpg'
-import indonesia from '/src/assets/Indonesia.jpg'
+import indonesia from '/src/assets/indonesia.jpg'
 import malaysia from '/src/assets/malaysia.jpg'
 import france from '/src/assets/france.jpg'
 import DestinationData from './DestinationData';
