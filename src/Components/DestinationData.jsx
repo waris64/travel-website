@@ -3,8 +3,6 @@ import pic2 from '/src/assets/2.jpg'
 const DestinationData = (props) => {
     return (
         <div className={`flex flex-col ${props.direction} gap-8 md:mt-34 items-center`}>
-
-
             <div className="w-full md:w-1/2 text-center md:text-left">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">{props.heading}</h2>
                 <p className="text-base md:text-lg text-left  leading-relaxed">

@@ -1,5 +1,4 @@
 import React from 'react';
-
 const Footer = () => {
     return (
         <div className='bg-black text-white w-full'>
@@ -11,7 +10,6 @@ const Footer = () => {
                         <h1 className='text-3xl md:text-4xl font-bold'>Trippy</h1>
                         <p className='text-lg md:text-2xl'>Choose your favourite destination</p>
                     </div>
-
                     <div className='flex gap-4 text-3xl md:text-4xl'>
                         <i className="fa-brands fa-square-facebook cursor-pointer hover:text-[#01959a]"></i>
                         <i className="fa-brands fa-square-instagram cursor-pointer hover:text-[#01959a]"></i>

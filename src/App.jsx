@@ -9,9 +9,7 @@ import Register from './Routes/Register'
 import Login from './Components/Login'
 function App() {
   return (
-    
     <div>
-      
       <Routes>
         <Route path = '/' element={<Home/>}/>
         <Route path = '/about' element={<About/>}/>
@@ -19,12 +17,9 @@ function App() {
         <Route path = '/service' element={<Services/>}/>
         <Route path = '/register' element={<Register/>}/>
         <Route path = '/login' element={<Login/>}/>
-      </Routes>
-      
-      
+      </Routes>      
     </div>
-    
-  )
+    )
 }
 
 export default App

@@ -31,7 +31,6 @@ const Destinations = () => {
                 pic2={pic2}
                 direction="md:flex-row"
             />
-
             <DestinationData
                 heading="Taal Volcani, Batangas"
                 text="One of the most iconic views in Luzon, Mt. Taal boasts a volcano inside a lake inside an island. If you fancy a closer look,

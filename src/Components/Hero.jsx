@@ -8,7 +8,6 @@ const Hero = ({ heroImg, title, text, btnText }) => {
         alt="hero-img"
         className="absolute  w-full h-full md:object-cover md:bg-contain   "
       />
-
       <div className="z-10 text-center px-4     ">
         <h1 className="text-4xl font-bold py-2 ">{title}</h1>
         <h3 className="py-4 text-lg font-semibold">{text}</h3>
@@ -16,7 +15,6 @@ const Hero = ({ heroImg, title, text, btnText }) => {
           <a
             href="/"
             className="px-4 py-2 bg-white font-semibold rounded text-black hover:bg-gray-200 transition"
-
           >
             {btnText}
           </a>
@@ -25,5 +23,4 @@ const Hero = ({ heroImg, title, text, btnText }) => {
     </div>
   );
 };
-
 export default Hero;
