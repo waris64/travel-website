@@ -1,7 +1,7 @@
 import React from 'react';
 const Footer = () => {
     return (
-        <div className='bg-black text-white w-full'>
+        <div className=' text-white w-full bg-[#01959A]  shadow-md sticky top-0 z-50'>
             <div className='flex flex-col md:px-8 px-4'>
 
                 {/* Top Section: Logo & Social Icons */}
@@ -11,10 +11,10 @@ const Footer = () => {
                         <p className='text-lg md:text-2xl'>Choose your favourite destination</p>
                     </div>
                     <div className='flex gap-4 text-3xl md:text-4xl'>
-                        <i className="fa-brands fa-square-facebook cursor-pointer hover:text-[#01959a]"></i>
-                        <i className="fa-brands fa-square-instagram cursor-pointer hover:text-[#01959a]"></i>
-                        <i className="fa-brands fa-square-twitter cursor-pointer hover:text-[#01959a]"></i>
-                        <i className="fa-brands fa-linkedin cursor-pointer hover:text-[#01959a]"></i>
+                        <i className="fa-brands fa-square-facebook cursor-pointer   "></i>
+                        <i className="fa-brands fa-square-instagram cursor-pointer "></i>
+                        <i className="fa-brands fa-square-twitter cursor-pointer "></i>
+                        <i className="fa-brands fa-linkedin cursor-pointer "></i>
                     </div>
                 </div>
 

@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <main>
             <Navbar />
-            <Hero onClick={gotoPlans} heroImg="/src/assets/jeep.jpg"  title="Your Journey Your Story" text="Choose Your Favourite Destination" btnText="Travel Plan" />
+            <Hero onClick={gotoPlans} heroImg="/src/assets/jeep.jpg"  title="Your Journey Your Story" text="Choose Your Favourite Destination" btnText="Book you trip" />
             <Destinations/>    
             <Footer/>
         </main>

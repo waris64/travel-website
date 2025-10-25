@@ -10,6 +10,7 @@ import Login from './Components/Login'
 import TripForm from './Components/TripForm'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify'
+import Booking from './Routes/Booking'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path = '/register' element={<Register/>}/>
         <Route path = '/Tripform' element={<TripForm/>}/>
         <Route path = '/login' element={<Login/>}/>
+        <Route path = '/booking' element={<Booking/>}/>
       </Routes>      
     </div>
     )

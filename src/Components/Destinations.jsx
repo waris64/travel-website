@@ -12,41 +12,44 @@ import pic11 from '../assets/11.jpg'
 import indonesia from '../assets/indonesia.jpg'
 import malaysia from '../assets/malaysia.jpg'
 import france from '../assets/france.jpg'
-import DestinationData from './DestinationData';
-import RecentTrips from './RecentTrips';
+import DestinationData from './DestinationData'
+import RecentTrips from './RecentTrips'
+
 const Destinations = () => {
     return (
         <div className="px-4 py-8 max-w-7xl mx-auto">
             <h1 className="text-2xl md:text-5xl text-center font-bold mb-4">Popular Destinations</h1>
             <h3 className="text-lg md:text-xl text-center font-medium mb-8">
-                Tours give you the opportunity to see a lot, within a time frame
+                Discover the world’s most breathtaking travel spots — handpicked for adventure seekers and dreamers alike.
             </h3>
+
             <DestinationData
-                heading="Taal Volcani, Batangas"
-                text="One of the most iconic views in Luzon, Mt. Taal boasts a volcano inside a lake inside an island. If you fancy a closer look,
-                            the hike up to the crater is a mere 45 minutes, and is easy enough for beginners. Guides will assist you most of the way, and
-                            you’ll see the peculiar environment found on an active volcano, including volcanic rocks and steam vents. The hike can be dusty
-                            and hot, so plan for an early morning trip, and then unwind with some bulalo before heading back home!"
-                pic1={pic1}
-                pic2={pic2}
+                heading="Bali, Indonesia"
+                text="A tropical paradise where emerald rice terraces meet turquoise beaches and sacred temples. Whether you’re surfing in Kuta, chasing waterfalls in Ubud, or watching the sunset at Tanah Lot, Bali wraps you in a rhythm of calm and color that never fades. It’s more than a destination — it’s a feeling that lingers."
+                pic1={indonesia}
+                pic2={pic1}
                 direction="md:flex-row"
             />
+
             <DestinationData
-                heading="Taal Volcani, Batangas"
-                text="One of the most iconic views in Luzon, Mt. Taal boasts a volcano inside a lake inside an island. If you fancy a closer look,
-                            the hike up to the crater is a mere 45 minutes, and is easy enough for beginners. Guides will assist you most of the way, and
-                            you’ll see the peculiar environment found on an active volcano, including volcanic rocks and steam vents. The hike can be dusty
-                            and hot, so plan for an early morning trip, and then unwind with some bulalo before heading back home!"
-                pic1={pic3}
-                pic2={pic4}
+                heading="Paris, France"
+                text="The City of Lights — timeless, romantic, and filled with charm. Wander along the Seine, sip coffee at a Montmartre café, or gaze at the Eiffel Tower sparkling through the night. Paris isn’t just a city to visit; it’s a poem to experience — one pastry, one museum, and one love story at a time."
+                pic1={france}
+                pic2={pic3}
                 direction="md:flex-row-reverse"
-
             />
-           <RecentTrips />
 
-            
+            <DestinationData
+                heading="Kuala Lumpur, Malaysia"
+                text="Where tradition meets modern skyline. The iconic Petronas Towers rise above a city bursting with flavors, festivals, and colors. Explore vibrant street markets, lush rainforests, and sacred temples — all in one unforgettable journey through Malaysia’s heart."
+                pic1={malaysia}
+                pic2={pic4}
+                direction="md:flex-row"
+            />
+
+            <RecentTrips />
         </div>
-    );
-};
+    )
+}
 
-export default Destinations;
+export default Destinations
