@@ -13,7 +13,7 @@ const Hero = ({ heroImg, title, text, btnText }) => {
         <h3 className="py-4 text-lg font-semibold">{text}</h3>
         {btnText && (
           <a
-            href="/"
+            href="/trips"
             className="px-4 py-2 bg-white font-semibold rounded text-black hover:bg-gray-200 transition"
           >
             {btnText}

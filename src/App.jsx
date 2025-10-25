@@ -7,6 +7,7 @@ import Contact from './Routes/Contact'
 import Services from './Routes/Services'
 import Register from './Routes/Register'
 import Login from './Components/Login'
+import Trips from './Components/Trips'
 function App() {
   return (
     <div>
@@ -16,6 +17,7 @@ function App() {
         <Route path = '/contact' element={<Contact/>}/>
         <Route path = '/service' element={<Services/>}/>
         <Route path = '/register' element={<Register/>}/>
+        <Route path = '/trips' element={<Trips/>}/>
         <Route path = '/login' element={<Login/>}/>
       </Routes>      
     </div>
