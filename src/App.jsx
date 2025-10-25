@@ -7,7 +7,10 @@ import Contact from './Routes/Contact'
 import Services from './Routes/Services'
 import Register from './Routes/Register'
 import Login from './Components/Login'
-import Trips from './Components/Trips'
+import TripForm from './Components/TripForm'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
+
 function App() {
   return (
     <div>
@@ -17,7 +20,7 @@ function App() {
         <Route path = '/contact' element={<Contact/>}/>
         <Route path = '/service' element={<Services/>}/>
         <Route path = '/register' element={<Register/>}/>
-        <Route path = '/trips' element={<Trips/>}/>
+        <Route path = '/Tripform' element={<TripForm/>}/>
         <Route path = '/login' element={<Login/>}/>
       </Routes>      
     </div>

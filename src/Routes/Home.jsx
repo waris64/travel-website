@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
     const navigate = useNavigate();
     const gotoPlans =()=>{
-        navigate('/trips')
+        navigate('/TripForm')
     }
     return (
         <main>
