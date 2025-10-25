@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import { useTripStore } from "../store/tripStore";
 
 const TripForm = () => {
   const [from, setFrom] = useState("");
@@ -9,6 +11,7 @@ const TripForm = () => {
   const [endDate, setEndDate] = useState("");
   const [days, setDays] = useState(0);
 
+  const navigate = useNavigate();
   const destinations = [
     "Paris",
     "London",
@@ -20,7 +23,7 @@ const TripForm = () => {
     "Cairo",
   ];
 
-  // Calculate duration
+  // Calculate duration dynamically
   useEffect(() => {
     if (startDate && endDate) {
       const diff =
@@ -29,24 +32,29 @@ const TripForm = () => {
     }
   }, [startDate, endDate]);
 
-  // Form submission
+  // Handle submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!from || !to || !startDate || !endDate) {
-      toast.error("Please fill all fields before submitting!");
-      return;
-    }
+    if (!from || !to || !startDate || !endDate)
+      return toast.error("Please fill all fields before submitting!");
 
-    if (from === to) {
-      toast.warning("Departure and Destination cannot be the same!");
-      return;
-    }
+    if (from === to)
+      return toast.warning("Departure and Destination cannot be the same!");
 
-    if (days <= 0) {
-      toast.error("Please select valid travel dates!");
-      return;
-    }
+    if (days <= 0)
+      return toast.error("Please select valid travel dates!");
+
+    const formData = { from, to, startDate, endDate, days };
+
+    // Store trip in Zustand
+    useTripStore.getState().setTripData(formData);
+
+    // Generate unique trip ID
+    const tripId = crypto.randomUUID();
+
+    // Navigate to Trip Details
+    navigate(`/trip/${tripId}`);
 
     toast.success(
       `Trip confirmed!\nFrom: ${from}\nTo: ${to}\nDuration: ${days} days\nDate: ${startDate} → ${endDate}`
@@ -65,9 +73,7 @@ const TripForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* From */}
         <div>
-          <label className="block text-gray-600 font-medium mb-2">
-            From
-          </label>
+          <label className="block text-gray-600 font-medium mb-2">From</label>
           <select
             value={from}
             onChange={(e) => setFrom(e.target.value)}
@@ -84,9 +90,7 @@ const TripForm = () => {
 
         {/* To */}
         <div>
-          <label className="block text-gray-600 font-medium mb-2">
-            To
-          </label>
+          <label className="block text-gray-600 font-medium mb-2">To</label>
           <select
             value={to}
             onChange={(e) => setTo(e.target.value)}
@@ -128,7 +132,6 @@ const TripForm = () => {
         </div>
       </div>
 
-      {/* Duration */}
       {days > 0 && (
         <div className="text-center text-gray-700 font-medium">
           Your trip will last{" "}
@@ -136,7 +139,6 @@ const TripForm = () => {
         </div>
       )}
 
-      {/* Submit Button */}
       <div className="text-center">
         <button
           type="submit"

@@ -11,7 +11,7 @@ import TripForm from './Components/TripForm'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify'
 import Booking from './Routes/Booking'
-
+import TripDetails from './Components/TripDetails'
 function App() {
   return (
     <div>
@@ -24,6 +24,7 @@ function App() {
         <Route path = '/Tripform' element={<TripForm/>}/>
         <Route path = '/login' element={<Login/>}/>
         <Route path = '/booking' element={<Booking/>}/>
+        <Route path = '/trip/:id' element={<TripDetails/>}/>
       </Routes>      
     </div>
     )
