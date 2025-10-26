@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gemini Model Lister</title>
+  </head>
+  <body>
+    <h2>Check the console for Gemini model list 👇</h2>
+
+    <script type="module">
+      const GEMINI_API_KEY = "AIzaSyAqply-QWSzA16keWPOh4gVDkh0I0J_eL0"; // 🔑 Replace with your actual key
+
+      async function listGeminiModels() {
+        try {
+          const res = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models?key=${GEMINI_API_KEY}`
+          );
+
+          const data = await res.json();
+          console.log("🔍 Available Gemini Models:", data);
+
+          if (data.models) {
+            data.models.forEach((m) =>
+              console.log(`→ ${m.displayName} | ${m.name}`)
+            );
+          } else {
+            console.warn("⚠️ No models returned. Check API key or quota.");
+          }
+        } catch (err) {
+          console.error("❌ Failed to fetch models:", err);
+        }
+      }
+
+      listGeminiModels();
+    </script>
+  </body>
+</html>

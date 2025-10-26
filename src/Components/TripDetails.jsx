@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTripStore } from "../store/tripStore";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { motion } from "framer-motion";
+import { generateMockItinerary } from "../utils/generateItinerary";
 
 const TripDetails = () => {
   const { tripData } = useTripStore();
   const { id } = useParams();
   const navigate = useNavigate();
+  const [itinerary, setItinerary] = useState([]);
+
+  useEffect(() => {
+    if (tripData) {
+      const mockData = generateMockItinerary(tripData);
+      setItinerary(mockData);
+    }
+  }, [tripData]);
 
   if (!tripData) {
     return (
-      <div className="flex  flex-col items-center justify-center min-h-screen text-center">
+      <div className="flex flex-col items-center justify-center min-h-screen text-center">
         <h2 className="text-2xl font-semibold text-gray-700 mb-4">
           No trip data found 😢
         </h2>
@@ -25,42 +35,41 @@ const TripDetails = () => {
     );
   }
 
-  const daysArray = Array.from({ length: tripData.days }, (_, i) => i + 1);
-
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
 
-      <main className="flex-grow py-12 px-6 md:px-20">
-        <h1 className="text-3xl font-bold text-[#01959a] text-center mb-8">
-          Your Trip Plan ✈️
+      <main className="flex-grow py-16 px-6 md:px-20">
+        <h1 className="text-3xl font-bold text-center text-[#01959a] mb-4">
+          {tripData.from} → {tripData.to}
         </h1>
+        <p className="text-center text-gray-600 mb-10">
+          Duration: {tripData.days} days | {tripData.startDate} → {tripData.endDate}
+        </p>
 
-        <div className="bg-white shadow-md rounded-xl p-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-            {tripData.from} → {tripData.to}
-          </h2>
-          <p className="text-gray-600 mb-4">
-            Duration: {tripData.days} days | {tripData.startDate} →{" "}
-            {tripData.endDate}
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {daysArray.map((day) => (
-              <div
-                key={day}
-                className="border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition"
-              >
-                <h3 className="text-lg font-semibold text-[#01959a] mb-2">
-                  Day {day}
-                </h3>
-                <p className="text-gray-700">
-                  Activities for day {day} will appear here soon — including
-                  meals, sightseeing, and transport.
-                </p>
+        <div className="space-y-8">
+          {itinerary.map((day) => (
+            <motion.div
+              key={day.day}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: day.day * 0.05 }}
+              className="bg-white border border-gray-200 rounded-xl shadow-sm p-6"
+            >
+              <h2 className="text-2xl font-semibold text-[#01959a] mb-2">
+                Day {day.day}: {day.title}
+              </h2>
+              <p className="text-gray-700 mb-3">{day.description}</p>
+              <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                <p>🍽️ Meals: {day.meals.join(", ")}</p>
+                {day.hotel && (
+                  <p>
+                    🏨 <span className="font-medium">{day.hotel}</span>
+                  </p>
+                )}
               </div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
       </main>
 

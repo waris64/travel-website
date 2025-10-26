@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useTripStore } from "../store/tripStore";
+import {generateTripPlan} from "../services/geminiService"; 
 
 const TripForm = () => {
   const [from, setFrom] = useState("");
@@ -10,8 +11,10 @@ const TripForm = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [days, setDays] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
   const destinations = [
     "Paris",
     "London",
@@ -23,7 +26,6 @@ const TripForm = () => {
     "Cairo",
   ];
 
-  // Calculate duration dynamically
   useEffect(() => {
     if (startDate && endDate) {
       const diff =
@@ -32,8 +34,7 @@ const TripForm = () => {
     }
   }, [startDate, endDate]);
 
-  // Handle submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!from || !to || !startDate || !endDate)
@@ -42,23 +43,40 @@ const TripForm = () => {
     if (from === to)
       return toast.warning("Departure and Destination cannot be the same!");
 
-    if (days <= 0)
-      return toast.error("Please select valid travel dates!");
+    if (days <= 0) return toast.error("Please select valid travel dates!");
 
     const formData = { from, to, startDate, endDate, days };
+    setLoading(true);
+    toast.info("Generating your personalized itinerary... ✈️");
 
-    // Store trip in Zustand
-    useTripStore.getState().setTripData(formData);
+    try {
+      // 🧠 Generate itinerary using Gemini
+      const itinerary = await   generateTripPlan(formData);
 
-    // Generate unique trip ID
-    const tripId = crypto.randomUUID();
+      if (!itinerary) {
+        toast.error("Failed to generate itinerary. Try again later.");
+        setLoading(false);
+        return;
+      }
 
-    // Navigate to Trip Details
-    navigate(`/trip/${tripId}`);
+      // 🧳 Save to Zustand
+      useTripStore.getState().setTripData({ ...formData, itinerary });
 
-    toast.success(
-      `Trip confirmed!\nFrom: ${from}\nTo: ${to}\nDuration: ${days} days\nDate: ${startDate} → ${endDate}`
-    );
+      // Generate unique trip ID
+      const tripId = crypto.randomUUID();
+
+      // ✅ Redirect to Trip Details
+      navigate(`/trip/${tripId}`);
+
+      toast.success(
+        `Trip from ${from} to ${to} confirmed! (${days} days planned) 🌍`
+      );
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong while generating your trip plan.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -142,9 +160,14 @@ const TripForm = () => {
       <div className="text-center">
         <button
           type="submit"
-          className="w-full md:w-1/2 bg-[#01959a] text-white py-3 rounded-lg font-semibold hover:bg-[#017c80] transition duration-300"
+          disabled={loading}
+          className={`w-full md:w-1/2 py-3 rounded-lg font-semibold transition duration-300 ${
+            loading
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-[#01959a] text-white hover:bg-[#017c80]"
+          }`}
         >
-          Confirm Trip
+          {loading ? "Generating Plan..." : "Confirm Trip"}
         </button>
       </div>
     </form>
