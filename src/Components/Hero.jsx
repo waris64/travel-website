@@ -1,6 +1,7 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section
       className="relative h-[85vh] flex flex-col justify-center items-center text-center text-white bg-cover bg-center"
@@ -26,7 +27,7 @@ const Hero = () => {
         </p>
 
         <button
-          onClick={() => window.scrollTo({ top: 700, behavior: "smooth" })}
+          onClick={()=>navigate('/booking')}
           className="mt-8 bg-[#01959A] hover:bg-[#01777c] text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
         >
           Start Your Journey

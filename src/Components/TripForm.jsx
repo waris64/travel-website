@@ -51,7 +51,7 @@ const TripForm = () => {
 
     try {
       // 🧠 Generate itinerary using Gemini
-      const itinerary = await   generateTripPlan(formData);
+      const itinerary = await   generateTripPlan(to,days,["culture","food"]);
 
       if (!itinerary) {
         toast.error("Failed to generate itinerary. Try again later.");
